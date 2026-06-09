@@ -31,3 +31,4 @@
 ## General
 - Always validate changes compile before committing (`mvn compile -q`)
 - Never commit secrets or plain-text passwords
+- Always ask me before commiting and pushing changes.
