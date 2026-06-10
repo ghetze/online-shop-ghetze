@@ -44,6 +44,8 @@ public class Order extends AbstractBaseEntity {
 
     @PrePersist
     protected void prePersist() {
-        this.createdAt = OffsetDateTime.now(java.time.ZoneOffset.UTC);
+        if (this.createdAt == null) {
+            this.createdAt = OffsetDateTime.now(java.time.ZoneOffset.UTC);
+        }
     }
 }
