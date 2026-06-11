@@ -15,4 +15,8 @@ public interface StockRepository extends JpaRepository<Stock, UUID> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT s FROM Stock s JOIN FETCH s.product JOIN FETCH s.location WHERE s.product.id IN :productIds")
     List<Stock> findByProductIdIn(@Param("productIds") List<UUID> productIds);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT s FROM Stock s JOIN FETCH s.product JOIN FETCH s.location WHERE s.product.id IN :productIds ORDER BY s.quantity DESC")
+    List<Stock> findByProductIdInOrderByQuantityDesc(@Param("productIds") List<UUID> productIds);
 }
