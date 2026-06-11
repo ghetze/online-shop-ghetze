@@ -104,3 +104,49 @@ All tables live in the `online_shop` PostgreSQL schema. `spring.jpa.hibernate.dd
 - Run validation only when risk is non-trivial (build/tests as needed).
 - Report only critical blockers or risks in 1-2 lines.
 - Add code comments only for non-obvious logic.
+
+
+# Pull Request Description Format
+
+When asked to generate a PR title and description:
+
+* Use a concise, imperative PR title.
+* Because the CLI renders markdown so the ## headers appear as plain text without the # symbols visible. use the raw text.
+* Generate the description using the following structure:
+
+````markdown
+## Summary
+
+Short explanation of the purpose of the change.
+
+## Changes
+
+### New
+- `ClassName` - description
+
+### Modified
+- `ClassName` - description
+
+### Removed
+- `ClassName` - description
+
+### Fixed
+- Description
+
+## Configuration
+
+```properties
+property=value
+````
+
+```
+
+Rules:
+- Use backticks for classes, interfaces, records, DTOs, methods, files, migrations and configuration properties.
+- Omit empty sections.
+- Prefer concise bullet points.
+- Include a Configuration section only when configuration changes are introduced.
+- Include migrations when database schema changes are introduced.
+- Base the description only on the provided code changes; do not invent functionality.
+```
+
