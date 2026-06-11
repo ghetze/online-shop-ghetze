@@ -13,12 +13,12 @@ public class MostAbundantStrategy implements LocationSelectionStrategy {
 
     @Override
     public List<LocationSelectionResult> selectLocations(Map<UUID, Integer> productQuantities, List<Stock> stocks) {
-        // Stocks arrive ordered by quantity DESC; keep the first (highest) per product
+        // Keep the highest-quantity stock per product, regardless of input order
         Map<UUID, Stock> bestStockPerProduct = stocks.stream()
                 .collect(Collectors.toMap(
                         s -> s.getProduct().getId(),
                         s -> s,
-                        (s1, s2) -> s1
+                        (s1, s2) -> s1.getQuantity() >= s2.getQuantity() ? s1 : s2
                 ));
 
         return productQuantities.entrySet().stream()
